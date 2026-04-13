@@ -1,0 +1,489 @@
+SQL> CREATE TABLE Staffs (employee_id INT PRIMARY KEY, foreign key (employee_id)refernces Staffs (employee_id),staff_type VARCHAR(50),shift VARCHAR(20),skill VARCHAR(50) );
+
+Table created.
+
+SQL> desc staffs
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                               NOT NULL NUMBER(38)
+ STAFF_TYPE                                         VARCHAR2(50)
+ SHIFT                                              VARCHAR2(20)
+ SKILL                                              VARCHAR2(50)
+
+SQL> CREATE TABLE Customers(customer_id INT PRIMARY KEY,customer_name VARCHAR(100),customer_address VARCHAR(200),customer_number VARCHAR(15));
+
+Table created.
+
+SQL> desc staffs
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                               NOT NULL NUMBER(38)
+ STAFF_TYPE                                         VARCHAR2(50)
+ SHIFT                                              VARCHAR2(20)
+ SKILL                                              VARCHAR2(50)
+
+SQL> CREATE TABLE RawMaterials (material_id INT PRIMARY KEY,material_name VARCHAR(100));
+
+Table created.
+
+SQL>
+SQL> desc RawMaterials;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ MATERIAL_ID                               NOT NULL NUMBER(38)
+ MATERIAL_NAME                                      VARCHAR2(100)
+
+SQL> CREATE TABLE SupplierMateriale (supplier_material_id INT PRIMARY KEY,material_id INT,cost_per_unit float not null,date_of_supply DATE));
+
+Table created.
+
+SQL>
+SQL> desc SupplierMateriale;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SUPPLIER_MATERIAL_ID                      NOT NULL NUMBER(38)
+ MATERIAL_ID                               NOT NULL NUMBER(38)
+ COST_PER_UNIT                             NOT NULL FLOAT(126)
+ DATE_OF_SUPPLY                                     DATE
+
+SQL> CREATE TABLE Orderes(order_id INT PRIMARY KEY,order_date DATE,customer_id INT,order_name VARCHAR(100));
+
+Table created.
+
+SQL> desc Orderes;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ORDER_ID                                  NOT NULL NUMBER(38)
+ ORDER_DATE                                         DATE
+ CUSTOMER_ID                               NOT NULL NUMBER(38)
+ ORDER_NAME                                         VARCHAR2(100)
+
+SQL> CREATE TABLE Stockss (stock_id INT PRIMARY KEY,material_id INT,stock_available INT,reorder_level INT);
+
+Table created.
+
+SQL>
+SQL> desc Stockss;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCK_ID                                  NOT NULL NUMBER(38)
+ MATERIAL_ID                               NOT NULL NUMBER(38)
+ STOCK_AVAILABLE                                    NUMBER(38)
+ REORDER_LEVEL                                      NUMBER(38)
+
+SQL>
+SQL> CREATE TABLE Purchass(purchase_id INT PRIMARY KEY,supplier_id INT,purchase_date DATE,total_amount float NOT NULL);
+
+Table created.
+
+SQL> desc Purchass;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PURCHASE_ID                               NOT NULL NUMBER(38)
+ SUPPLIER_ID                               NOT NULL NUMBER(38)
+ PURCHASE_DATE                                      DATE
+ TOTAL_AMOUNT                              NOT NULL FLOAT(126)
+
+SQL> CREATE TABLE MenuItems (menu_id INT PRIMARY KEY,menu_name VARCHAR(100),menu_category VARCHAR(50),total_purchases INT,menu_sell_price float);
+
+Table created.
+
+SQL>
+SQL> desc MenuItems;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ MENU_ID                                   NOT NULL NUMBER(38)
+ MENU_NAME                                          VARCHAR2(100)
+ MENU_CATEGORY                                      VARCHAR2(50)
+ TOTAL_PURCHASES                                    NUMBER(38)
+ MENU_SELL_PRICE                                    FLOAT(126
+
+
+SQL> CREATE TABLE Bill (bill_id INT PRIMARY KEY,order_id INT,payment_method VARCHAR(30), bill_amount float NOT NULL,bill_time varchar (10));
+
+Table created.
+
+SQL> desc Bill;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BILL_ID                                   NOT NULL NUMBER(38)
+ ORDER_ID                                  NOT NULL NUMBER(38)
+ PAYMENT_METHOD                                     VARCHAR2(30)
+ BILL_AMOUNT                               NOT NULL FLOAT(126)
+ BILL_TIME                                          VARCHAR2(10)
+
+SQL> CREATE TABLE DailyReports (report_id INT PRIMARY KEY,report_date DATE,total_sales float NOT NULL,total_purchases float NOT NULL, remaining_stock INT );
+
+Table created.
+
+SQL> desc DailyReports;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ REPORT_ID                                 NOT NULL NUMBER(38)
+ REPORT_DATE                                        DATE
+ TOTAL_SALES                               NOT NULL FLOAT(126)
+ TOTAL_PURCHASES                           NOT NULL FLOAT(126)
+ REMAINING_STOCK                                    NUMBER(38)
+
+SQL> ALTER TABLE Staffs ADD PRIMARY KEY (employee_id);
+
+Table altered.
+
+SQL> desc Staffs;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                               NOT NULL NUMBER(38)
+ STAFF_TYPE                                         VARCHAR2(50)
+ SHIFT                                              VARCHAR2(20)
+ SKILL                                              VARCHAR2(50)
+
+SQL>
+SQL> ALTER TABLE Customers ADD PRIMARY KEY (customer_id);
+
+Table altered.
+
+SQL> desc Customers;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUSTOMER_ID                               NOT NULL NUMBER(38)
+ CUSTOMER_NAME                                      VARCHAR2(100)
+ CUSTOMER_ADDRESS                                   VARCHAR2(200)
+ CUSTOMER_NUMBER                                    VARCHAR2(15)
+
+
+SQL> ALTER TABLE RawMaterials ADD PRIMARY KEY (material_id);
+
+Table altered.
+
+SQL> desc RawMaterials;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ MATERIAL_ID                               NOT NULL NUMBER(38)
+ MATERIAL_NAME                                      VARCHAR2(100)
+
+SQL> ALTER TABLE Orderes ADD PRIMARY KEY (order_id);
+
+Table altered.
+
+SQL> desc Orderes;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ORDER_ID                                  NOT NULL NUMBER(38)
+ ORDER_DATE                                         DATE
+ CUSTOMER_ID                               NOT NULL NUMBER(38)
+ ORDER_NAME                                         VARCHAR2(100)
+
+SQL> ALTER TABLE Stockss ADD PRIMARY KEY (stock_id);
+
+Table altered.
+
+SQL> desc Stockss;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCK_ID                                  NOT NULL NUMBER(38)
+ MATERIAL_ID                               NOT NULL NUMBER(38)
+ STOCK_AVAILABLE                                    NUMBER(38)
+ REORDER_LEVEL                                      NUMBER(38)
+
+SQL> ALTER TABLE Purchass ADD PRIMARY KEY (purchase_id);
+
+Table altered.
+
+SQL> desc Purchass;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PURCHASE_ID                               NOT NULL NUMBER(38)
+ SUPPLIER_ID                               NOT NULL NUMBER(38)
+ PURCHASE_DATE                                      DATE
+ TOTAL_AMOUNT                              NOT NULL FLOAT(126)
+
+SQL> ALTER TABLE MenuItems ADD PRIMARY KEY (menu_id);
+
+Table altered.
+
+SQL> desc MenuItems;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ MENU_ID                                   NOT NULL NUMBER(38)
+ MENU_NAME                                          VARCHAR2(100)
+ MENU_CATEGORY                                      VARCHAR2(50)
+ TOTAL_PURCHASES                                    NUMBER(38)
+ MENU_SELL_PRICE                                    FLOAT(126)
+
+SQL> ALTER TABLE Bill ADD PRIMARY KEY (bill_id);
+
+Table altered.
+
+SQL> desc Bill;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BILL_ID                                   NOT NULL NUMBER(38)
+ ORDER_ID                                  NOT NULL NUMBER(38)
+ PAYMENT_METHOD                                     VARCHAR2(30)
+ BILL_AMOUNT                               NOT NULL FLOAT(126)
+ BILL_TIME                                          VARCHAR2(10)
+
+
+SQL> ALTER TABLE DailyReports ADD PRIMARY KEY (report_id);
+
+Table altered.
+
+SQL> desc DailyReports;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ REPORT_ID                                 NOT NULL NUMBER(38)
+ REPORT_DATE                                        DATE
+ TOTAL_SALES                               NOT NULL FLOAT(126)
+ TOTAL_PURCHASES                           NOT NULL FLOAT(126)
+ REMAINING_STOCK                                    NUMBER(38)
+
+SQL> ALTER TABLE Staffs DROP PRIMARY KEY;
+
+Table altered.
+
+SQL> desc Staffs;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                               NOT NULL NUMBER(38)
+ STAFF_TYPE                                         VARCHAR2(50)
+ SHIFT                                              VARCHAR2(20)
+ SKILL                                              VARCHAR2(50)
+
+SQL> ALTER TABLE SupplierMateriale ADD CONSTRAINT fk_material,  FOREIGN KEY (material_id) REFERENCES RawMaterials(material_id);
+
+Table altered.
+
+SQL>
+SQL> desc SupplierMateriale;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SUPPLIER_MATERIAL_ID                      NOT NULL NUMBER(38)
+ MATERIAL_ID                               NOT NULL NUMBER(38)
+ COST_PER_UNIT                             NOT NULL FLOAT(126)
+ DATE_OF_SUPPLY                                     DATE
+
+SQL> ALTER TABLE Orderes ADD CONSTRAINT fk_customer FOREIGN KEY (customer_id)REFERENCES Customer(customer_id);
+
+Table altered.
+
+SQL> desc Orders;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ORDERS_ID                                 NOT NULL VARCHAR2(10)
+ ORDER_DATE                                NOT NULL VARCHAR2(10)
+ CUSTOMER_ID                               NOT NULL NUMBER(38)
+ ORDERS_NAME                                        VARCHAR2(20)
+
+SQL> ALTER TABLE Orderes ADD CONSTRAINT fk_customer1 FOREIGN KEY (customer_id) REFERENCES Customers(customer_id);
+
+Table altered.
+
+SQL> desc Orderes;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ORDER_ID                                  NOT NULL NUMBER(38)
+ ORDER_DATE                                         DATE
+ CUSTOMER_ID                               NOT NULL NUMBER(38)
+ ORDER_NAME                                         VARCHAR2(100)
+
+SQL> ALTER TABLE Bill  ADD CONSTRAINT fk_order FOREIGN KEY (order_id) REFERENCES Orderes(order_id);
+
+Table altered.
+
+SQL> desc Bill;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BILL_ID                                   NOT NULL NUMBER(38)
+ ORDER_ID                                  NOT NULL NUMBER(38)
+ PAYMENT_METHOD                                     VARCHAR2(30)
+ BILL_AMOUNT                               NOT NULL FLOAT(126)
+ BILL_TIME                                          VARCHAR2(10)
+
+               
+
+
+SQL> desc SupplierMaterials;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SUPPLIER_MATERIAL_ID                      NOT NULL NUMBER(38)
+ MATERIAL_ID                               NOT NULL NUMBER(38)
+ COST_PER_UNIT                                      NUMBER(10,2)
+ DATE_OF_SUPPLY                                     DATE
+
+SQL> desc SupplierMateriale;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SUPPLIER_MATERIAL_ID                      NOT NULL NUMBER(38)
+ MATERIAL_ID                               NOT NULL NUMBER(38)
+ COST_PER_UNIT                             NOT NULL FLOAT(126)
+ DATE_OF_SUPPLY                                     DATE
+
+
+SQL> ALTER TABLE Customers ADD CONSTRAINT customer_number UNIQUE (customer_number);
+
+Table altered.
+
+SQL>
+SQL> desc Customers;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUSTOMER_ID                               NOT NULL NUMBER(38)
+ CUSTOMER_NAME                                      VARCHAR2(100)
+ CUSTOMER_ADDRESS                                   VARCHAR2(200)
+ CUSTOMER_NUMBER                                    VARCHAR2(15)
+
+SQL> ALTER TABLE Stockss ADD CONSTRAINT chk_stock CHECK (stock_available >= 0);
+
+Table altered.
+
+SQL> desc Stockss;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCK_ID                                  NOT NULL NUMBER(38)
+ MATERIAL_ID                               NOT NULL NUMBER(38)
+ STOCK_AVAILABLE                                    NUMBER(38)
+ REORDER_LEVEL                                      NUMBER(38)
+
+SQL> ALTER TABLE Stockss DROP constraint chk_stock;
+
+Table altered.
+
+SQL> desc Stockss;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STOCK_ID                                  NOT NULL NUMBER(38)
+ MATERIAL_ID                               NOT NULL NUMBER(38)
+ STOCK_AVAILABLE                                    NUMBER(38)
+ REORDER_LEVEL                                      NUMBER(38)
+
+SQL> ALTER TABLE Customers DROP column customer_name;
+
+Table altered.
+
+SQL> desc Customers;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUSTOMER_ID                               NOT NULL NUMBER(38)
+ CUSTOMER_ADDRESS                                   VARCHAR2(200)
+
+SQL> desc Staffs;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                               NOT NULL NUMBER(38)
+ STAFF_TYPE                                         VARCHAR2(50)
+ SHIFT                                              VARCHAR2(20)
+ SKILL                                              VARCHAR2(100)
+ SALARY                                             FLOAT(126).
+SQL> ALTER TABLE Staffs ADD bonus float;
+
+Table altered.
+
+SQL> desc Staffs;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                              NOT NULL  NUMBER(38)
+ STAFF_TYPE                                         VARCHAR2(50)
+ SHIFT                                              VARCHAR2(20)
+ SKILL                                              VARCHAR2(100)
+ SALARY                                             FLOAT(126)
+ BONUS                                              FLOAT(126)
+
+SQL> ALTER TABLE Staffs MODIFY skill VARCHAR(100);
+
+Table altered.
+
+SQL> desc Staffs;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                               NOT NULL NUMBER(38)
+ STAFF_TYPE                                         VARCHAR2(50)
+ SHIFT                                              VARCHAR2(20)
+ SKILL                                              VARCHAR2(100)
+ SALARY                                             FLOAT(126)
+ BONUS                                              FLOAT(126)
+
+SQL> RENAME  Staffs TO worker;
+
+Table renamed.
+
+SQL> desc worker;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                              NOT NULL  NUMBER(38)
+ STAFF_TYPE                                         VARCHAR2(50)
+ SHIFT                                              VARCHAR2(20)
+ SKILL                                              VARCHAR2(100)
+ SALARY                                             FLOAT(126)
+ BONUS                                              FLOAT(126)
+
+SQL> TRUNCATE TABLE worker;
+
+Table truncated.
+
+SQL> desc worker;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                               NOT NULL NUMBER(38)
+ STAFF_TYPE                                         VARCHAR2(50)
+ SHIFT                                              VARCHAR2(20)
+ SKILL                                              VARCHAR2(100)
+ SALARY                                             FLOAT(126)
+ BONUS                                              FLOAT(126)
+SQL> alter table worker add primary key(employee_id);
+
+Table altered.
+
+SQL> desc worker;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                               NOT NULL NUMBER(38)
+ STAFF_TYPE                                         VARCHAR2(50)
+ SHIFT                                              VARCHAR2(20)
+ SKILL                                              VARCHAR2(100)
+ SALARY                                             FLOAT(126)
+ BONUS                                              FLOAT(126)
+
+SQL> alter table worker drop primary key;
+
+Table altered.
+
+SQL> desc worker;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                               NOT NULL NUMBER(38)
+ STAFF_TYPE                                         VARCHAR2(50)
+ SHIFT                                              VARCHAR2(20)
+ SKILL                                              VARCHAR2(100)
+ SALARY                                             FLOAT(126)
+ BONUS             
+
+
+
+
+SQL> alter table Payment add constraint fk_branch foreign key(branch_id) references hotelbranch(branch_id);
+
+Table altered.
+
+SQL> desc Payment;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PAYMENT_ID                                NOT NULL NUMBER(38)
+ BILL_ID                                   NOT NULL NUMBER(38)
+ PAYMENT_TYPE                                       VARCHAR2(10)
+ AMOUNT_PAID                                        FLOAT(126)
+ PAYMENT_STATUS                                     VARCHAR2(10)
+ BRANCH_ID                                          NUMBER(38)
+
+SQL> alter table Payment drop constraint fk_branch;
+
+Table altered.
+
+SQL> desc Payment;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PAYMENT_ID                                NOT NULL NUMBER(38)
+ BILL_ID                                   NOT NULL NUMBER(38)
+ PAYMENT_TYPE                                       VARCHAR2(10)
+ AMOUNT_PAID                                        FLOAT(126)
+ PAYMENT_STATUS                                     VARCHAR2(10)
+ BRANCH_ID                                 NOT NULL NUMBER(38)
