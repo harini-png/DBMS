@@ -1,0 +1,42 @@
+SET NULL "NULL";
+SET FEEDBACK OFF;
+SET ECHO OFF;
+SET HEADING OFF;
+SET WRAP OFF;
+SET LINESIZE 10000;
+SET TAB OFF;
+SET PAGES 0;
+SET DEFINE OFF;
+
+SELECT 
+    con.contest_id, 
+    con.hacker_id, 
+    con.name, 
+    SUM(ss.sum_ts), 
+    SUM(ss.sum_tas), 
+    SUM(vs.sum_tv), 
+    SUM(vs.sum_tuv)
+FROM Contests con
+JOIN Colleges col ON con.contest_id = col.contest_id
+JOIN Challenges cha ON col.college_id = cha.college_id
+LEFT JOIN (
+    /* Pre-aggregate Submissions to avoid duplicate counting */
+    SELECT challenge_id, 
+           SUM(total_submissions) AS sum_ts, 
+           SUM(total_accepted_submissions) AS sum_tas
+    FROM Submission_Stats
+    GROUP BY challenge_id
+) ss ON cha.challenge_id = ss.challenge_id
+LEFT JOIN (
+    /* Pre-aggregate Views to avoid duplicate counting */
+    SELECT challenge_id, 
+           SUM(total_views) AS sum_tv, 
+           SUM(total_unique_views) AS sum_tuv
+    FROM View_Stats
+    GROUP BY challenge_id
+) vs ON cha.challenge_id = vs.challenge_id
+GROUP BY con.contest_id, con.hacker_id, con.name
+/* Exclude contests where all sums are zero */
+HAVING (SUM(ss.sum_ts) + SUM(ss.sum_tas) + SUM(vs.sum_tv) + SUM(vs.sum_tuv)) > 0
+ORDER BY con.contest_id;
+exit;
