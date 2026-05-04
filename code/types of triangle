@@ -1,0 +1,13 @@
+SELECT 
+    CASE 
+        /* 1. Check if it's a valid triangle first */
+        WHEN (A + B <= C) OR (A + C <= B) OR (B + C <= A) THEN 'Not A Triangle'
+        /* 2. Check for Equilateral */
+        WHEN A = B AND B = C THEN 'Equilateral'
+        /* 3. Check for Isosceles */
+        WHEN A = B OR B = C OR A = C THEN 'Isosceles'
+        /* 4. Otherwise, it must be Scalene */
+        ELSE 'Scalene'
+    END
+FROM TRIANGLES;
+
