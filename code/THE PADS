@@ -1,0 +1,19 @@
+SET NULL "NULL";
+SET FEEDBACK OFF;
+SET ECHO OFF;
+SET HEADING OFF;
+SET WRAP OFF;
+SET LINESIZE 10000;
+SET TAB OFF;
+SET PAGES 0;
+SET DEFINE OFF;
+SELECT Name || '(' || SUBSTR(Occupation, 1, 1) || ')'
+FROM OCCUPATIONS
+ORDER BY Name;
+
+/* Second Result Set: Counts per occupation */
+SELECT 'There are a total of ' || COUNT(Occupation) || ' ' || LOWER(Occupation) || 's.'
+FROM OCCUPATIONS
+GROUP BY Occupation
+ORDER BY COUNT(Occupation) ASC, Occupation ASC;
+exit;
